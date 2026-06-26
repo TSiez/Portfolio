@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Capstone Projects — Tricia Siez</title>
+<meta name="description" content="Capstone projects by Tricia Siez — the build, the stack, the process and snapshots behind each one.">
+<link rel="icon" type="image/png" href="portfolio/assets/Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE7D7; --paper-2:#E5DECB; --ink:#1B1C20; --ink-soft:#3c3d44; --muted:#8a8470;
+    --desk:#0f1014; --accent:#e2cf1e; --line:#1B1C20;
+    --serif:"Fraunces",serif; --sans:"Archivo",system-ui,sans-serif; --mono:"Space Mono",monospace; --hand:"Caveat",cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--desk);color:#e7e9ef;font-family:var(--sans);min-height:100vh;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 80% at 50% -8%,#1d1f27 0%,#0f1014 58%)}
+  a{color:inherit;text-decoration:none}
+
+  /* header */
+  .bar{position:sticky;top:0;z-index:30;background:rgba(15,16,20,.8);backdrop-filter:blur(9px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .bar-in{display:flex;align-items:center;gap:20px;height:64px;max-width:1080px;margin:0 auto;padding:0 24px}
+  .mark{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-size:19px;color:#fff}
+  .mark .star{width:22px;height:22px;color:var(--accent)}
+  .mark em{font-style:italic;font-weight:400}
+  .links{margin-left:auto;display:flex;gap:22px;align-items:center}
+  .links a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#aab0bd;transition:.2s}
+  .links a:hover{color:#fff}
+  .links a.active{color:var(--accent)}
+  .pill{background:var(--accent);color:var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:9px 15px;border-radius:999px;font-weight:700}
+  .pill:hover{transform:translateY(-1px)}
+
+  /* page intro */
+  main{max-width:1080px;margin:0 auto;padding:44px 20px 80px}
+  .intro{text-align:center;margin-bottom:30px}
+  .intro .k{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+  .intro h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5vw,46px);margin-top:10px;color:#fff;letter-spacing:-.01em}
+  .intro p{font-size:13.5px;color:#9aa0ad;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto}
+
+  /* binder */
+  .binder{position:relative;width:min(880px,100%);margin:0 auto}
+  .page{position:relative;background:var(--paper);border-radius:3px 8px 8px 3px;padding:54px 60px 30px;
+    box-shadow:0 30px 70px rgba(0,0,0,.5);color:var(--ink);
+    background-image:
+      linear-gradient(90deg,rgba(0,0,0,.16) 0,rgba(0,0,0,0) 32px),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    display:none}
+  .page.on{display:block;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* side tabs — sized to grow as projects are added */
+  .tabs{position:absolute;top:30px;right:-34px;display:flex;flex-direction:column;gap:13px;z-index:5}
+  .tab{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);
+    background:var(--paper-2);color:var(--ink-soft);border:1px solid rgba(27,28,32,.5);border-left:none;
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    padding:18px 9px;border-radius:0 9px 9px 0;cursor:pointer;height:172px;
+    box-shadow:4px 6px 14px rgba(0,0,0,.28);transition:.22s;white-space:nowrap}
+  .tab:hover{transform:rotate(180deg) translateX(2px);color:var(--ink)}
+  .tab.on{background:var(--accent);color:var(--ink);right:0;font-weight:700;box-shadow:6px 8px 18px rgba(0,0,0,.34)}
+  .tab.ghost{height:120px;background:transparent;border-style:dashed;border-color:rgba(237,231,215,.32);
+    color:rgba(237,231,215,.5);cursor:default;box-shadow:none;font-size:10px;letter-spacing:.16em}
+  .tab.ghost:hover{transform:rotate(180deg)}
+
+  /* spec sheet */
+  .sheet{border:1.5px solid var(--line)}
+  .row{display:grid;grid-template-columns:120px 1fr;border-bottom:1.5px solid var(--line)}
+  .row:last-child{border-bottom:none}
+  .row .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:16px 14px}
+  .row .val{padding:15px 18px 16px}
+  .row.title .val h2{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;line-height:1.02}
+  .row.title .val .sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--muted);margin-top:5px}
+  .row.title .lbl,.row.title .val{padding-top:18px;padding-bottom:18px}
+  .desc .val{font-size:13.5px;line-height:1.6;color:var(--ink-soft);max-width:62ch}
+  .list{list-style:none;display:flex;flex-direction:column;gap:5px}
+  .list li{font-size:13px;line-height:1.45;color:var(--ink-soft)}
+  .proc{counter-reset:s}
+  .proc li{counter-increment:s;position:relative;padding-left:26px}
+  .proc li::before{content:counter(s);position:absolute;left:0;top:0;font-family:var(--mono);font-size:11px;color:var(--ink);
+    border:1.3px solid var(--ink);width:17px;height:17px;border-radius:50%;display:grid;place-items:center}
+  .foot2{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .foot2 .cell{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:12px;padding:14px 18px}
+  .foot2 .cell:first-child{border-right:1.5px solid var(--line)}
+  .foot2 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+  .foot2 .hand{font-family:var(--hand);font-size:25px;color:var(--ink);line-height:1}
+
+  /* CTA + url under the sheet */
+  .cta-row{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:22px}
+  .cta{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;letter-spacing:.05em;
+    text-transform:uppercase;padding:12px 22px;border-radius:999px;transition:.2s;border:1.5px solid var(--ink)}
+  .cta:hover{background:var(--accent);color:var(--ink);border-color:var(--accent);transform:translateY(-2px)}
+  .url{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* paper-clipped snapshots */
+  .clip{position:absolute;right:34px;top:296px;width:230px;z-index:4;transform:rotate(3.5deg)}
+  .clip .ph{background:#fff;padding:9px 9px 30px;box-shadow:0 14px 30px rgba(0,0,0,.3);border:1px solid #e7e7e7}
+  .clip .ph img{display:block;width:100%;height:130px;object-fit:cover}
+  .clip .ph.back{position:absolute;top:14px;left:-16px;width:100%;transform:rotate(-7deg);z-index:-1;opacity:.96}
+  .clip .cap{font-family:var(--hand);font-size:18px;color:#33343a;text-align:center;margin-top:4px}
+  .clip .pin{position:absolute;top:-16px;left:50%;transform:translateX(-50%) rotate(8deg);width:26px;height:58px;z-index:3}
+
+  footer{border-top:1px solid rgba(255,255,255,.08);margin-top:10px}
+  .foot-in{max-width:1080px;margin:0 auto;padding:26px 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:#7e8491}
+  .foot-in a{color:#aab0bd}.foot-in a:hover{color:#fff}
+
+  @media(max-width:760px){
+    .page{padding:40px 22px 26px}
+    .tabs{position:static;flex-direction:row;gap:8px;right:auto;margin:0 0 -1px;justify-content:flex-end;transform:none;flex-wrap:wrap}
+    .tab{writing-mode:horizontal-tb;transform:none;height:auto;border-radius:9px 9px 0 0;border-left:1px solid rgba(27,28,32,.5);border-bottom:none;padding:10px 14px}
+    .tab.ghost{height:auto}
+    .tab:hover,.tab.on{transform:none}
+    .row{grid-template-columns:84px 1fr}
+    .clip{position:static;width:200px;margin:18px auto 0;transform:rotate(-2deg)}
+    .row.title .val h2{font-size:23px}
+    .links{display:none}
+  }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-in">
+      <a class="mark" href="index.html"><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 L58 42 L100 50 L58 58 L50 100 L42 58 L0 50 L42 42 Z" fill="currentColor"/></svg>Bystander&nbsp;<em>Studio</em></a>
+      <nav class="links">
+        <a href="about.html">About</a>
+        <a href="index.html#work">Work</a>
+        <a href="capstones.html" class="active" aria-current="page">Capstones</a>
+        <a class="pill" href="index.html#contact">Let's talk →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <div class="k">Capstone Projects</div>
+      <h1>The build, on the record</h1>
+      <p>Flip a tab → each page is one project: what it is, the stack, the process, and snapshots from the build.</p>
+    </div>
+
+    <div class="binder">
+      <div class="tabs">
+        <button class="tab on" data-p="portfolio">The Portfolio</button>
+        <button class="tab" data-p="lead">The Lead List</button>
+        <span class="tab ghost" aria-hidden="true">＋ More soon</span>
+      </div>
+      <div class="pages">
+
+        <!-- PORTFOLIO -->
+        <div class="page on" data-p="portfolio">
+          <div class="sheet">
+            <div class="row title"><div class="lbl">Project</div><div class="val"><h2>The Portfolio</h2><div class="sub">Editorial personal site — Bystander Studio</div></div></div>
+            <div class="row desc"><div class="lbl">Brief</div><div class="val">A personal site that positions me as a Virtual Assistant and showcases my live builds — brand identity, layout, and front-end designed and hand-coded end to end, with no templates or page builders.</div></div>
+            <div class="row"><div class="lbl">Stack</div><div class="val"><ul class="list">
+              <li>HTML · CSS · vanilla JavaScript (zero dependencies)</li>
+              <li>Claude — design, cowork &amp; code</li>
+              <li>Vercel (deploy) · GitHub (version control)</li>
+              <li>FFmpeg — intro-reel compression</li>
+              <li>Type: Fraunces · Archivo · Space Mono</li>
+            </ul></div></div>
+            <div class="row"><div class="lbl">The process</div><div class="val"><ul class="list proc">
+              <li>Brand &amp; identity — logo, type system, cream / navy / lime palette</li>
+              <li>Design system — editorial layout and reusable components</li>
+              <li>Hand-coded front-end — semantic HTML/CSS, no framework</li>
+              <li>Interaction &amp; motion — folder toggles, deck galleries, scroll reveals</li>
+              <li>Ship — GitHub → Vercel, responsive with optimized media</li>
+            </ul></div></div>
+            <div class="row"><div class="foot2">
+              <div class="cell"><span class="lbl">Outcome</span><span class="hand">live · responsive · 0 deps</span></div>
+              <div class="cell"><span class="lbl">Built in</span><span class="hand">~1 week</span></div>
+            </div></div>
+          </div>
+          <div class="cta-row">
+            <a class="cta" href="https://portfolio-brown-nu-17.vercel.app/" target="_blank" rel="noopener">Visit the live site ↗</a>
+            <span class="url">portfolio-brown-nu-17.vercel.app</span>
+          </div>
+          <div class="clip">
+            <svg class="pin" viewBox="0 0 26 58" aria-hidden="true"><path d="M13 4c-5 0-8 3-8 8v34c0 4 3 7 7 7s7-3 7-7V13" fill="none" stroke="#9a9a9a" stroke-width="3"/><path d="M19 46V14c0-3-2.5-5-6-5s-6 2-6 5v30" fill="none" stroke="#c8c8c8" stroke-width="3"/></svg>
+            <div class="ph back"><img src="portfolio/assets/cases/pf-work.png" alt=""></div>
+            <div class="ph"><img src="portfolio/assets/cases/pf-home.png" alt="Portfolio home page"><div class="cap">the home page</div></div>
+          </div>
+        </div>
+
+        <!-- LEAD LIST -->
+        <div class="page" data-p="lead">
+          <div class="sheet">
+            <div class="row title"><div class="lbl">Project</div><div class="val"><h2>The Lead List</h2><div class="sub">B2B SaaS lead generation — case study</div></div></div>
+            <div class="row desc"><div class="lbl">Brief</div><div class="val">Briefed for 100 B2B SaaS founder leads with every paid prospecting tool blocked and no budget. I re-routed to a research-first workflow and shipped 43 verified, outreach-ready leads — for $0 in tooling.</div></div>
+            <div class="row"><div class="lbl">Method</div><div class="val"><ul class="list">
+              <li>Manual web research from primary sources</li>
+              <li>Primary-source verification (live pages, public posts)</li>
+              <li>ICP screening &amp; discipline</li>
+              <li>Email-pattern validation (first@domain)</li>
+              <li>Structured CSV delivery</li>
+              <li>Attempted: Apollo enrichment — blocked</li>
+            </ul></div></div>
+            <div class="row"><div class="lbl">The process</div><div class="val"><ul class="list proc">
+              <li>Source candidates from primary sources</li>
+              <li>Verify every name against a live page</li>
+              <li>Enforce the ICP — cut, don't pad the count</li>
+              <li>Recover emails from public signals</li>
+              <li>Ship a clean, structured CSV</li>
+            </ul></div></div>
+            <div class="row"><div class="foot2">
+              <div class="cell"><span class="lbl">Outcome</span><span class="hand">43 leads · $0 tooling</span></div>
+              <div class="cell"><span class="lbl">Verified</span><span class="hand">7 public-confirmed</span></div>
+            </div></div>
+          </div>
+          <div class="cta-row">
+            <a class="cta" href="https://tsiez.github.io/arca-leadgen-casestudy/" target="_blank" rel="noopener">View full case study ↗</a>
+            <span class="url">tsiez.github.io/arca-leadgen-casestudy</span>
+          </div>
+          <div class="clip">
+            <svg class="pin" viewBox="0 0 26 58" aria-hidden="true"><path d="M13 4c-5 0-8 3-8 8v34c0 4 3 7 7 7s7-3 7-7V13" fill="none" stroke="#9a9a9a" stroke-width="3"/><path d="M19 46V14c0-3-2.5-5-6-5s-6 2-6 5v30" fill="none" stroke="#c8c8c8" stroke-width="3"/></svg>
+            <div class="ph back"><img src="portfolio/assets/cases/sl-table.png" alt=""></div>
+            <div class="ph"><img src="portfolio/assets/cases/sl-funnel.png" alt="Lead list funnel dashboard"><div class="cap">the funnel</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-in">
+      <span>© 2026 Tricia Siez · Bystander Studio</span>
+      <span><a href="index.html">Portfolio</a> · <a href="about.html">About</a></span>
+    </div>
+  </footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab[data-p]'), pages = document.querySelectorAll('.page');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    const p = t.dataset.p;
+    tabs.forEach(x => x.classList.toggle('on', x === t));
+    pages.forEach(pg => pg.classList.toggle('on', pg.dataset.p === p));
+  }));
+</script>
+</body>
+</html>
