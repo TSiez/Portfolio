@@ -188,6 +188,35 @@
   .work.feat{grid-column:span 2}
   .work.feat .thumb{aspect-ratio:16/9}
 
+  /* ---------- work folders (AI & Automation, Data & Research) ---------- */
+  .wfolders{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-top:8px}
+  .wfolder{position:relative;height:470px}
+  .wfolder .wcat{position:absolute;bottom:20px;left:26px;z-index:6;pointer-events:none;transition:opacity .4s}
+  .wfolder .wcat .wnm{font-family:var(--sans);font-weight:800;font-size:30px;line-height:.96;letter-spacing:-.01em;color:#F4F4F2}
+  .wfolder .wcat .wct{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-top:8px}
+  /* pocket — front face, on-theme dark navy with a lime lip */
+  .wpocket{position:absolute;left:0;right:0;bottom:0;height:140px;border-radius:14px 14px 16px 16px;z-index:5;background:linear-gradient(165deg,#242a34,#15171C);box-shadow:0 24px 44px rgba(21,23,28,.22)}
+  .wpocket::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);opacity:.9;z-index:3}
+  .wpocket .wnotch{position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:120px;height:40px;background:var(--bg);border-radius:0 0 80px 80px;z-index:4}
+  /* sheets (projects) */
+  .wsheet{position:absolute;left:6%;right:6%;top:var(--rt);background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(21,23,28,.10);overflow:hidden;cursor:pointer;display:block;transform:rotate(var(--sr,0deg));transform-origin:50% 0;z-index:var(--z,1);transition:top .46s cubic-bezier(.2,.75,.2,1), transform .46s cubic-bezier(.2,.75,.2,1), box-shadow .3s}
+  .wsheet .wtab{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 13px;border-bottom:1.5px dashed var(--line)}
+  .wsheet .wtab h3{font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:-.01em;text-transform:uppercase;line-height:1.05}
+  .wsheet .wtab .yr{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
+  .wsheet .wthumb{height:118px;overflow:hidden;background:var(--dark)}
+  .wsheet .wthumb img{width:100%;height:100%;object-fit:cover}
+  .wsheet .wthumb.cover{display:flex;flex-direction:column;justify-content:center;padding:14px 20px;background:linear-gradient(160deg,#242a34,#15171C)}
+  .wsheet .wthumb.cover .big{font-family:var(--sans);font-weight:800;font-size:44px;line-height:.85;color:var(--accent);letter-spacing:-.02em}
+  .wsheet .wthumb.cover .lbl{font-family:var(--serif);font-style:italic;font-size:14px;color:#F4F4F2;margin-top:3px}
+  .wsheet .wthumb.cover .meta{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,244,242,.55);margin-top:7px}
+  .wsheet .wdesc{padding:11px 16px 14px}
+  .wsheet .wdesc p{font-size:12px;color:var(--muted-dark);line-height:1.5}
+  .wsheet .wdesc .tags{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+  /* active: park every other file's tab at top (still clickable), lift the chosen file to the pocket lip */
+  .wfolder.has-active .wsheet{top:calc(var(--i) * 24px)}
+  .wfolder.has-active .wcat{opacity:.5}
+  .wsheet.lift{top:96px;transform:rotate(0deg);z-index:30;box-shadow:0 28px 54px rgba(21,23,28,.28)}
+
   /* ---------- pitch-deck showcase ---------- */
   .deck-show{margin:26px 0 8px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--card)}
   .deck-banner{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;padding:24px 26px;background:#0b53c4;color:#fff}
@@ -277,13 +306,14 @@
     .work-grid{grid-template-columns:repeat(2,1fr)}
     .work.feat{grid-column:span 2}
     .folders{grid-template-columns:repeat(2,1fr)}
+    .wfolders{grid-template-columns:1fr;gap:30px}
     nav.links{display:none}
   }
   @media(max-width:600px){
     .wrap{padding:0 18px}
     .hero-panel{padding:26px 22px 40px;min-height:auto}
     .contents,.thanks .panel{padding:34px 22px}
-    .parts,.builds,.work-grid,.folders{grid-template-columns:1fr}
+    .parts,.builds,.work-grid,.folders,.wfolders{grid-template-columns:1fr}
     .work.feat{grid-column:span 1}
     .corner-row .label:nth-child(2){display:none}
     .specsheet dd{font-size:17px}
@@ -452,54 +482,46 @@
       </div>
     </div>
 
-    <!-- AI & Automation -->
-    <div class="builds-head rv"><span class="label">AI &amp; Automation — 03</span><span class="rule"></span></div>
-    <div class="work-grid">
-      <a class="work rv" href="https://morning-briefing-cron-job.vercel.app/" target="_blank" rel="noopener">
-        <div class="thumb"><img src="portfolio/assets/shots/morning-briefing.png" alt="The Morning Briefing — automated daily signup dispatch" loading="lazy"></div>
-        <div class="meta">
-          <div class="top"><h3>Email Automation &amp; Subscription Tracking</h3><span class="yr">live ↗</span></div>
-          <p style="color:var(--muted-dark);font-size:14px">A cron-driven daily email dispatch with subscriber tracking — a vintage-newspaper "Morning Briefing" generated and sent on schedule.</p>
-          <div class="tags"><span class="tag">Node.js</span><span class="tag">Cron</span><span class="tag">Automation</span></div>
-        </div>
-      </a>
-      <a class="work rv" href="https://youtube-analyst-8c26.onrender.com/" target="_blank" rel="noopener">
-        <div class="thumb"><img src="portfolio/assets/shots/youtube-analyst.png" alt="AI YouTube Analyzer — analyze.exe" loading="lazy"></div>
-        <div class="meta">
-          <div class="top"><h3>AI YouTube Analyzer</h3><span class="yr">live ↗</span></div>
-          <p style="color:var(--muted-dark);font-size:14px">Drop a YouTube link and get an AI summary, key moments and quotes — a retro-desktop tool with single-video and weekly-trend modes. Deployed on Render.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">AI</span><span class="tag">Render</span></div>
-        </div>
-      </a>
-      <a class="work rv" href="https://altier-frontend.onrender.com/" target="_blank" rel="noopener">
-        <div class="thumb"><img src="portfolio/assets/shots/concept-archive.png" alt="Concept Archive — AI design-concept generator" loading="lazy"></div>
-        <div class="meta">
-          <div class="top"><h3>Concept Archive</h3><span class="yr">live ↗</span></div>
-          <p style="color:var(--muted-dark);font-size:14px">An AI design-concept generator — type a brief and get six homepage concepts (front + back plates) rendered by Google's nano-banana via kie.ai. Polaroid-framed previews, per-card export to self-contained HTML, every session pinned to local history.</p>
-          <div class="tags"><span class="tag">AI</span><span class="tag">kie.ai</span><span class="tag">JavaScript</span><span class="tag">Render</span></div>
-        </div>
-      </a>
-    </div>
+    <!-- AI & Automation + Data & Research — folder treatment -->
+    <div class="wfolders">
 
-    <!-- Data & Research -->
-    <div class="builds-head rv"><span class="label">Data &amp; Research — 02</span><span class="rule"></span></div>
-    <div class="work-grid">
-      <a class="work rv" href="https://altier-trend-finder.onrender.com/" target="_blank" rel="noopener">
-        <div class="thumb"><img src="portfolio/assets/shots/trend-finder.png" alt="Trend Finder — live news aggregator with Gemini idea extraction" loading="lazy"></div>
-        <div class="meta">
-          <div class="top"><h3>Trend Finder</h3><span class="yr">live ↗</span></div>
-          <p style="color:var(--muted-dark);font-size:14px">Live aggregator of Google News, Reddit and Hacker News on any topic, then Gemini reads each article and pulls out the ranked list of ideas inside. Reddit OAuth bypass for cloud hosting, dated markdown reports for reproducibility.</p>
-          <div class="tags"><span class="tag">Flask</span><span class="tag">Python</span><span class="tag">Gemini</span><span class="tag">Render</span></div>
-        </div>
-      </a>
-      <a class="work rv" href="https://tsiez.github.io/arca-leadgen-casestudy/" target="_blank" rel="noopener">
-        <div class="thumb"><img src="portfolio/assets/shots/arca-leadgen.png" alt="Arca lead-gen case study — a sales-ready SaaS pipeline, shipped with the toolkit locked" loading="lazy"></div>
-        <div class="meta">
-          <div class="top"><h3>B2B SaaS Lead List — Case Study</h3><span class="yr">live ↗</span></div>
-          <p style="color:var(--muted-dark);font-size:14px">A lead-generation case study: briefed for 100 B2B SaaS founder leads with every paid prospecting tool blocked, an operator re-routed the workflow and shipped 43 verified, outreach-ready leads — for $0 in tooling.</p>
-          <div class="tags"><span class="tag">Lead Gen</span><span class="tag">Research</span><span class="tag">Outbound</span><span class="tag">AI</span></div>
-        </div>
-      </a>
+      <!-- AI & Automation -->
+      <div class="wfolder rv">
+        <a class="wsheet" href="https://morning-briefing-cron-job.vercel.app/" target="_blank" rel="noopener" style="--i:0;--z:1;--rt:96px;--sr:-2.5deg">
+          <div class="wtab"><h3>Email&nbsp;Automation</h3><span class="yr">live ↗</span></div>
+          <div class="wthumb"><img src="portfolio/assets/shots/morning-briefing.png" alt="Email Automation &amp; Subscription Tracking" loading="lazy"></div>
+          <div class="wdesc"><p>A cron-driven daily email dispatch with subscriber tracking — a vintage-newspaper "Morning Briefing" generated and sent on schedule.</p><div class="tags"><span class="tag">Node.js</span><span class="tag">Cron</span><span class="tag">Automation</span></div></div>
+        </a>
+        <a class="wsheet" href="https://youtube-analyst-8c26.onrender.com/" target="_blank" rel="noopener" style="--i:1;--z:2;--rt:142px;--sr:1.5deg">
+          <div class="wtab"><h3>YouTube&nbsp;Analyzer</h3><span class="yr">live ↗</span></div>
+          <div class="wthumb"><img src="portfolio/assets/shots/youtube-analyst.png" alt="AI YouTube Analyzer" loading="lazy"></div>
+          <div class="wdesc"><p>Drop a YouTube link and get an AI summary, key moments and quotes — a retro-desktop tool with single-video and weekly-trend modes.</p><div class="tags"><span class="tag">Python</span><span class="tag">AI</span><span class="tag">Render</span></div></div>
+        </a>
+        <a class="wsheet" href="https://altier-frontend.onrender.com/" target="_blank" rel="noopener" style="--i:2;--z:3;--rt:188px;--sr:-1deg">
+          <div class="wtab"><h3>Concept&nbsp;Archive</h3><span class="yr">live ↗</span></div>
+          <div class="wthumb"><img src="portfolio/assets/shots/concept-archive.png" alt="Concept Archive — AI design-concept generator" loading="lazy"></div>
+          <div class="wdesc"><p>An AI design-concept generator — type a brief, get six homepage concepts rendered via kie.ai, export each to self-contained HTML.</p><div class="tags"><span class="tag">AI</span><span class="tag">kie.ai</span><span class="tag">JavaScript</span></div></div>
+        </a>
+        <div class="wpocket"><span class="wnotch"></span></div>
+        <div class="wcat"><div class="wnm">AI &amp;<br>Automation</div><div class="wct">03 projects</div></div>
+      </div>
+
+      <!-- Data & Research -->
+      <div class="wfolder rv">
+        <a class="wsheet" href="https://altier-trend-finder.onrender.com/" target="_blank" rel="noopener" style="--i:0;--z:1;--rt:120px;--sr:-2deg">
+          <div class="wtab"><h3>Trend&nbsp;Finder</h3><span class="yr">live ↗</span></div>
+          <div class="wthumb"><img src="portfolio/assets/shots/trend-finder.png" alt="Trend Finder — live news aggregator with Gemini idea extraction" loading="lazy"></div>
+          <div class="wdesc"><p>Live aggregator of Google News, Reddit and Hacker News — Gemini reads each article and pulls the ranked list of ideas inside.</p><div class="tags"><span class="tag">Flask</span><span class="tag">Python</span><span class="tag">Gemini</span></div></div>
+        </a>
+        <a class="wsheet" href="https://tsiez.github.io/arca-leadgen-casestudy/" target="_blank" rel="noopener" style="--i:1;--z:2;--rt:188px;--sr:1.5deg">
+          <div class="wtab"><h3>B2B&nbsp;Lead&nbsp;List</h3><span class="yr">case study ↗</span></div>
+          <div class="wthumb cover"><span class="big">43</span><span class="lbl">verified founder leads</span><span class="meta">$0 tooling · 6 SaaS verticals</span></div>
+          <div class="wdesc"><p>Briefed for 100 SaaS founder leads with every paid tool blocked — re-routed the workflow and shipped 43 verified, outreach-ready leads for $0.</p><div class="tags"><span class="tag">Lead Gen</span><span class="tag">Research</span><span class="tag">AI</span></div></div>
+        </a>
+        <div class="wpocket"><span class="wnotch"></span></div>
+        <div class="wcat"><div class="wnm">Data &amp;<br>Research</div><div class="wct">02 projects</div></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -575,6 +597,18 @@
     document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open')) return;
       if(e.key==='Escape') close(); else if(e.key==='ArrowRight') show(i+1); else if(e.key==='ArrowLeft') show(i-1); });
   })();
+
+  // work folders — hover (desktop) + tap (mobile) to pull a file up; other tabs park at the top, stay clickable
+  document.querySelectorAll('.wfolder').forEach(folder=>{
+    const sheets = [...folder.querySelectorAll('.wsheet')];
+    const activate = (sheet)=>{ folder.classList.add('has-active'); sheets.forEach(s=>s.classList.toggle('lift', s===sheet)); };
+    const reset = ()=>{ folder.classList.remove('has-active'); sheets.forEach(s=>s.classList.remove('lift')); };
+    sheets.forEach(sheet=>{
+      sheet.addEventListener('mouseenter', ()=>activate(sheet));               // desktop hover
+      sheet.addEventListener('click', e=>{ if(sheet.classList.contains('lift')) return; e.preventDefault(); activate(sheet); }); // first tap opens, second visits
+    });
+    folder.addEventListener('mouseleave', reset);                              // desktop: collapse on leave
+  });
 </script>
 </body>
 </html>
